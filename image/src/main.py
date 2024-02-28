@@ -1,7 +1,6 @@
 import os
 import time
 import warnings
-import numpy as np
 import pandas as pd
 from datetime import datetime
 from datetime import timedelta
@@ -232,18 +231,11 @@ def run():
     return truth_vals, order_info, new_position, error_msg
 
 def Handler(event, context):
-    
-    arr = np.random.randint(0, 10, (3, 3))
-    
     truth_vals, order_info, new_position, error_msg = run()
     
     return {
         'statusCode': 200,
         'body': {
-            'message': 'Hello from Lambda',
-            
-            'array': arr.tolist(),
-            
             'truth_vals': {
                 'able_buy': truth_vals[0],
                 'able_sell': truth_vals[1],
