@@ -1,6 +1,5 @@
 numpy
 pandas
 DateTime
-python-dotenv
 alpaca-trade-api
 alpaca-py

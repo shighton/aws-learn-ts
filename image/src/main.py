@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 from datetime import timedelta
-from dotenv import load_dotenv
 from alpaca_trade_api.rest import REST
 from alpaca.data.timeframe import TimeFrame
 from alpaca.trading.client import TradingClient
@@ -18,18 +17,12 @@ warnings.simplefilter(action='ignore', category=DeprecationWarning)
 
 BASE_URL = "https://paper-api.alpaca.markets"
 
-# get environment variables (Create a .env file with Alpaca Keys for new users - Sabastian)
-try:
-    load_dotenv('.env')
-except:
-    pass
-
 # Instantiate REST API Connection
-api = REST(key_id=os.getenv('KEY_ID'), secret_key=os.getenv('SECRET_KEY'), base_url=BASE_URL)
+api = REST(key_id=os.environ['KEY_ID'], secret_key=os.environ['SECRET_KEY'], base_url=BASE_URL)
 
 SYMBOL = ['BTC/USD']
 SYM = 'BTCUSD'
-equity = float(TradingClient(os.getenv('KEY_ID'), os.getenv('SECRET_KEY')).get_account().equity)
+equity = float(TradingClient(os.environ['KEY_ID'], os.environ['SECRET_KEY']).get_account().equity)
 SMA_FAST = 10
 SMA_SLOW = 20
 QTY_PER_TRADE = 0.5
