@@ -181,7 +181,7 @@ def run():
         if ((((position >= 0) & able_buy) & should_buy_sma) & (o_sold | (o_bought == False))):
             truth_vals = ['T' if able_buy else 'F', 'T' if able_sell else 'F', 'T' if should_buy_sma else 'F',
                           'T' if o_bought else 'F', 'T' if o_sold else 'F', 'T' if sell_high else 'F',
-                          'T' if no_trades_two_days else 'F']
+                          'T' if no_trades_two_days else 'F', position]
             
             api.submit_order(SYM, qty=QTY_PER_TRADE, side='buy', time_in_force="gtc")
             
@@ -199,7 +199,7 @@ def run():
                 should_buy_sma == False)) & sell_high) & (o_bought | (o_sold == False))):
             truth_vals = ['T' if able_buy else 'F', 'T' if able_sell else 'F', 'T' if should_buy_sma else 'F',
                           'T' if o_bought else 'F', 'T' if o_sold else 'F', 'T' if sell_high else 'F',
-                          'T' if no_trades_two_days else 'F']
+                          'T' if no_trades_two_days else 'F', position]
             
             if able_sell:
                 api.submit_order(SYM, qty=QTY_PER_TRADE, side='sell', time_in_force="gtc")
@@ -221,7 +221,7 @@ def run():
         else:
             truth_vals = ['T' if able_buy else 'F', 'T' if able_sell else 'F', 'T' if should_buy_sma else 'F',
                           'T' if o_bought else 'F', 'T' if o_sold else 'F', 'T' if sell_high else 'F',
-                          'T' if no_trades_two_days else 'F']
+                          'T' if no_trades_two_days else 'F', position]
             
             order_info = ['NONE', 'NONE', 0, 0, 0]
             
@@ -246,6 +246,7 @@ def Handler(event, context):
                 'o_sold': truth_vals[4],
                 'sell_high': truth_vals[5],
                 'no_trades_two_days': truth_vals[6],
+                'position': truth_vals[7],
             },
             
             'order_info': {
