@@ -223,6 +223,8 @@ def run():
                           'T' if o_bought else 'F', 'T' if o_sold else 'F', 'T' if sell_high else 'F',
                           'T' if no_trades_two_days else 'F']
             
+            order_info = ['NONE', 'NONE', 0, 0, 0]
+            
             time.sleep(5)
             no_action_count += 1
     else:
